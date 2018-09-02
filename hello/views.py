@@ -82,10 +82,10 @@ def index(request):
 
 def db(request):
 
-    greeting = Greeting()
-    greeting.save()
+    reminder = Reminder()
+    reminder.save()
 
-    greetings = Greeting.objects.all()
+    reminders = Reminder.objects.all()
 
-    return render(request, 'db.html', {'greetings': greetings})
+    return render(request, 'db.html', {'reminders': reminders})
 
