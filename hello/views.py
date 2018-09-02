@@ -54,6 +54,7 @@ def menu(m,n):
 
 def hungry(f):
 	opts=[]
+
 	for i in range(3):
 		#print ven[i]
 		for j in range(4):
@@ -96,7 +97,7 @@ def index(request):
     if request.method=='GET':
     	return render(request, 'index.html')
     if request.method=='POST':
-    	rem=Reminder(phone_number=request.POST.get('num'),food=request.POST.get('thing'))
+    	rem=Reminder(phone_number=request.POST.get('num'),food=capitalize(request.POST.get('thing')))
     	rem.save()
     	return HttpResponse("Done")
 
