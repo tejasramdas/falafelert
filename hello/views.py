@@ -26,7 +26,7 @@ mealz=["Breakfast","Brunch","Lunch","Dinner"]
 
 def fetch_list():
 	r  = requests.get("https://hospitality.usc.edu/residential-dining-menus/")
-
+	day=[0]*12
 	data = r.content
 	soup = BeautifulSoup(data, "html.parser")
 	#print "done"
