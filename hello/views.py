@@ -75,12 +75,13 @@ def hungry(f,day):
 def run_search(request):
 	stuff=fetch_list()
 	rem = Reminder.objects.all()
-	foodz=Reminder.objects.only("food")
+	foodz=Reminder.objects.only("food").distinct()
+	print(foodz)
 	foodz=list(set(list(foodz)))
 	for i in foodz:
-		msg=i.food+" - "+hungry(i,stuff)
+		msg=i.food+" - "+hungry(i.food,stuff)
 		if msg!=0:
-			for j in rem.filter(food=i).only("phone_number"):
+			for j in rem.filter(food=i.food).only("phone_number"):
 				send_msg(j,msg)
 
 	return HttpResponse("Sent Alerts")
