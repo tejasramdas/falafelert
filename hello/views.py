@@ -77,7 +77,7 @@ def index(request):
     if request.method=='POST':
     	rem=Reminder(phone_number=request.POST.get('num'),food=request.POST.get('thing'))
     	rem.save()
-
+    	return HttpResponse("Done")
 
 
 def db(request):
