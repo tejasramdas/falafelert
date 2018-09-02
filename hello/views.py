@@ -31,7 +31,6 @@ def fetch_list():
 	soup = BeautifulSoup(data, "html.parser")
 	#print "done"
 	dining = soup.findAll("div", {"class": "dining-location-accordion"})
-	day=[0]*12
 	for n,meal in enumerate(dining):
 		x=meal.findAll("div", {"class": "col-sm-6"})
 
@@ -47,19 +46,19 @@ def fetch_list():
 	return day	
 
 
-def menu(m,n):
+def menu(day,m,n):
 	return day[int(m)*4+int(n)]
 
 
 
-def hungry(f):
+def hungry(f,day):
 	opts=[]
 
 	for i in range(3):
 		#print ven[i]
 		for j in range(4):
 			#print mealz[j]
-			x=menu(i,j)
+			x=menu(day,i,j)
 			for p in x:
 				if f in p:
 					opts.append((i,j))
@@ -79,7 +78,7 @@ def run_search(request):
 	foodz=Reminder.objects.only("food")
 	foodz=list(set(list(foodz)))
 	for i in foodz:
-		msg=hungry(i)
+		msg=i+" - "+hungry(i,stuff)
 		if msg!=0:
 			for j in rem.filter(food=i).only("phone_number"):
 				send_msg(j,msg)
