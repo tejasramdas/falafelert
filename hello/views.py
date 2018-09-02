@@ -4,6 +4,23 @@ from .models import Reminder
 from bs4 import BeautifulSoup
 import requests
 
+import urllib.request
+import urllib.parse
+ 
+def sendSMS(apikey, numbers, sender, message):
+    data =  urllib.parse.urlencode({'apikey': apikey, 'numbers': numbers,
+        'message' : message, 'sender': sender})
+    data = data.encode('utf-8')
+    request = urllib.request.Request("https://api.txtlocal.com/send/?")
+    f = urllib.request.urlopen(request, data)
+    fr = f.read()
+    return(fr)
+
+
+
+def send_msg(n,m):
+	sendSMS('AfekZxO11go-sRgFBDNNLiGHq3HwwEpfYvSZcnFKPR',n,'Popcorn Alerts',m)
+
 ven=["The Village","Parkside","EVK"]
 mealz=["Breakfast","Brunch","Lunch","Dinner"]
 
@@ -48,7 +65,9 @@ def hungry(f):
 	opts=list(set(opts))
 	res=[]
 	for i,j in opts:
-		res.append(str(mealz[j]+" at "+ven[i]))				
+		res.append(str(mealz[j]+" at "+ven[i]))
+	if len(res)==0:
+		return 0			
 	return str(res)
 
 #hungry("Smoothie")
@@ -60,8 +79,9 @@ def run_search(request):
 	foodz=list(set(list(foodz)))
 	for i in foodz:
 		msg=hungry(i)
-		for j in rem.filter("food",i).only("phone_number"):
-			send_msg(j,msg)
+		if msg!=0:
+			for j in rem.filter(food=i).only("phone_number"):
+				send_msg(j,msg)
 
 	return HttpResponse("Sent Alerts")
 
