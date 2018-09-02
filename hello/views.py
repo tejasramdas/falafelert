@@ -75,7 +75,7 @@ def index(request):
     if request.method=='GET':
     	return render(request, 'index.html')
     if request.method=='POST':
-    	rem=Reminder(phone_number=request['num'],food=request['thing'])
+    	rem=Reminder(phone_number=request.POST.get('num'),food=request.POST.get('thing'))
     	rem.save()
 
 
