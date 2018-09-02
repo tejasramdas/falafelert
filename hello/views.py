@@ -89,4 +89,4 @@ def db(request):
 
 def dell(request):
 	Reminder.objects.all().delete()
-
+	return HttpResponse("deleted")
