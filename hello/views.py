@@ -46,9 +46,10 @@ def hungry(f):
 				if f in p:
 					opts.append((i,j))
 	opts=list(set(opts))
-	#for i,j in opts:
-		#print mealz[j]+" at "+ven[i]				
-	return str(opts)
+	res=[]
+	for i,j in opts:
+		res.append(str(mealz[j]+" at "+ven[i]))				
+	return str(res)
 
 #hungry("Smoothie")
 
@@ -62,7 +63,7 @@ def run_search(request):
 		for j in rem.filter("food",i).only("phone_number"):
 			send_msg(j,msg)
 
-	return HttpResponseRedirect("/")
+	return HttpResponse("Sent Alerts")
 
 
 
@@ -82,10 +83,10 @@ def index(request):
 
 def db(request):
 
-    reminder = Reminder()
-    reminder.save()
-
     reminders = Reminder.objects.all()
 
     return render(request, 'db.html', {'reminders': reminders})
+
+def dell(request):
+	Reminder.objects.all().delete()
 
