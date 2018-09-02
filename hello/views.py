@@ -72,9 +72,9 @@ def run_search(request):
 # Create your views here.
 def index(request):
     # return HttpResponse('Hello from Python!')
-    if request.METHOD=='GET':
+    if request.method=='GET':
     	return render(request, 'index.html')
-    if request.METHOD=='POST':
+    if request.method=='POST':
     	rem=Reminder(request['num'],request['thing'])
     	rem.save()
 
