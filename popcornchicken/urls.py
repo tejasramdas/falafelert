@@ -12,6 +12,7 @@ import hello.views
 
 urlpatterns = [
     url(r'^$', hello.views.index, name='index'),
+    url(r'qwerty123^$', hello.views.run_search, name='run_search'),
     url(r'^db', hello.views.db, name='db'),
     path('admin/', admin.site.urls),
 ]
