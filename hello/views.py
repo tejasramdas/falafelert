@@ -76,7 +76,7 @@ def run_search(request):
 	stuff=fetch_list()
 	rem = Reminder.objects.all()
 	for i in rem:
-		msg=i.food+" - "+hungry(i.food,stuff)
+		msg=str(i.food)+" - "+str(hungry(i.food,stuff))
 		if msg!=0:
 			send_msg(i.phone_number,msg)
 
