@@ -77,6 +77,7 @@ def run_search(request):
 	rem = Reminder.objects.all()
 	foodz=Reminder.objects.only("food").distinct()
 	print(foodz)
+	return HttpResponse(foodz)
 	foodz=list(set(list(foodz)))
 	for i in foodz:
 		msg=i.food+" - "+hungry(i.food,stuff)
