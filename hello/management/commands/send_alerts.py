@@ -10,9 +10,6 @@ import urllib.parse
 class Command(BaseCommand):
 	
 
-	def handle(self, *args, **options):
-		main()
-
 	def sendSMS(self,apikey, numbers, sender, message):
 		data =  urllib.parse.urlencode({'apikey': apikey, 'numbers': numbers,
 			'message' : message, 'sender': sender})
@@ -88,4 +85,9 @@ class Command(BaseCommand):
 			if x!=0:
 				sms_res.append(send_msg(i.phone_number,msg))
 		print(sms_res)
+
+	
+	def handle(self, *args, **options):
+		main()
+
 
