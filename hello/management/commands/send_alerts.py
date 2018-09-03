@@ -22,7 +22,7 @@ class Command(BaseCommand):
 
 
 	def send_msg(self,n,m):
-		return sendSMS('AfekZxO11go-sRgFBDNNLiGHq3HwwEpfYvSZcnFKPR',n,'Popcorn Alerts',m)
+		return self.sendSMS('AfekZxO11go-sRgFBDNNLiGHq3HwwEpfYvSZcnFKPR',n,'Popcorn Alerts',m)
 
 	ven=["The Village","Parkside","EVK"]
 	mealz=["Breakfast","Brunch","Lunch","Dinner"]
@@ -61,7 +61,7 @@ class Command(BaseCommand):
 			#print ven[i]
 			for j in range(4):
 				#print mealz[j]
-				x=menu(day,i,j)
+				x=self.menu(day,i,j)
 				for p in x:
 					if f in p:
 						opts.append((i,j))
@@ -77,14 +77,14 @@ class Command(BaseCommand):
 
 
 	def handle(self, *args, **options):
-		stuff=fetch_list()
+		stuff=self.fetch_list()
 		rem = Reminder.objects.all()
 		sms_res=[]
 		for i in rem:
-			x=hungry(i.food,stuff)
+			x=self.hungry(i.food,stuff)
 			msg=str(i.food)+" - "+str(x)
 			if x!=0:
-				sms_res.append(send_msg(i.phone_number,msg))
+				sms_res.append(self.send_msg(i.phone_number,msg))
 		print(sms_res)
 
 
