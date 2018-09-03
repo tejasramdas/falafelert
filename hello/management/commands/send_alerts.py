@@ -75,7 +75,7 @@ class Command(BaseCommand):
 
 	#hungry("Smoothie")
 
-	def main(self):
+	def main_run(self):
 		stuff=fetch_list()
 		rem = Reminder.objects.all()
 		sms_res=[]
@@ -86,8 +86,8 @@ class Command(BaseCommand):
 				sms_res.append(send_msg(i.phone_number,msg))
 		print(sms_res)
 
-	
+
 	def handle(self, *args, **options):
-		main()
+		main_run()
 
 
