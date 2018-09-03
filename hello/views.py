@@ -77,11 +77,10 @@ def run_search(request):
 	rem = Reminder.objects.all()
 	sms_res=[]
 	for i in rem:
-		msg=str(i.food)+" - "+str(hungry(i.food,stuff))
-
-		if msg!=0:
+		x=hungry(i.food,stuff)
+		msg=str(i.food)+" - "+str(x)
+		if x!=0:
 			sms_res.append(send_msg(i.phone_number,msg))
-
 	return HttpResponse(sms_res)
 
 
