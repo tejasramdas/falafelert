@@ -19,7 +19,7 @@ def sendSMS(apikey, numbers, sender, message):
 
 
 def send_msg(n,m):
-	sendSMS('AfekZxO11go-sRgFBDNNLiGHq3HwwEpfYvSZcnFKPR',n,'Popcorn Alerts',m)
+	return sendSMS('AfekZxO11go-sRgFBDNNLiGHq3HwwEpfYvSZcnFKPR',n,'Popcorn Alerts',m)
 
 ven=["The Village","Parkside","EVK"]
 mealz=["Breakfast","Brunch","Lunch","Dinner"]
@@ -75,12 +75,14 @@ def hungry(f,day):
 def run_search(request):
 	stuff=fetch_list()
 	rem = Reminder.objects.all()
+	sms_res=[]
 	for i in rem:
 		msg=str(i.food)+" - "+str(hungry(i.food,stuff))
-		if msg!=0:
-			send_msg(i.phone_number,msg)
 
-	return HttpResponse("Sent Alerts")
+		if msg!=0:
+			sms_res.append(send_msg(i.phone_number,msg))
+
+	return HttpResponse(sms_res)
 
 
 
