@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand, CommandError
-from .models import Reminder
+from hello.models import Reminder
 from bs4 import BeautifulSoup
 import requests
 
