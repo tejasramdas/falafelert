@@ -97,7 +97,7 @@ def index(request):
     if request.method=='POST':
     	rem=Reminder(phone_number=request.POST.get('num'),food=request.POST.get('thing').capitalize())
     	rem.save()
-    	return HttpResponse("Done")
+    	return HttpResponse("Alert created. You will be notified when "+rem.food.lowercase()+" is on the menu starting tomorrow. Nom nom.")
 
 
 def db(request):
@@ -107,5 +107,8 @@ def db(request):
     return render(request, 'db.html', {'reminders': reminders})
 
 def dell(request):
-	Reminder.objects.all().delete()
-	return HttpResponse("deleted")
+	if request.method=='POST':
+		Reminder.objects.filter(phone_number=request.POST.get('num')).delete()
+		return HttpResponse("Deleted")
+	else:
+		return HttpResponseRedirect('/')

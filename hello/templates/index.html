@@ -4,9 +4,15 @@
   <title>Popcorn Chicken</title>
 </head>
 <body>
+	Add alert
 <form action="#" method="POST">{% csrf_token %}
   <input type="text" name="num" placeholder="15555555555">
   <input type="text" name="thing" placeholder="popcorn">
+  <input type="submit" name="submit" value="Submit">
+</form>
+Delete number
+<form action="/deletenum" method="POST">{% csrf_token %}
+  <input type="text" name="num" placeholder="15555555555">
   <input type="submit" name="submit" value="Submit">
 </form>
 </body>
