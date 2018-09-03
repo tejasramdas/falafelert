@@ -2,7 +2,8 @@ from django.core.management.base import BaseCommand, CommandError
 from hello.models import Reminder
 from bs4 import BeautifulSoup
 import requests
-
+import sendgrid
+from sendgrid.helpers.mail import *
 import urllib.request
 import urllib.parse
 
@@ -10,6 +11,7 @@ import urllib.parse
 class Command(BaseCommand):
 	ven=["The Village","Parkside","EVK"]
 	mealz=["Breakfast","Brunch","Lunch","Dinner"]
+	sg = sendgrid.SendGridAPIClient(apikey='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')
 
 	def sendSMS(self,apikey, numbers, sender, message):
 		data =  urllib.parse.urlencode({'apikey': apikey, 'numbers': numbers,
@@ -20,7 +22,14 @@ class Command(BaseCommand):
 		fr = f.read()
 		return(fr)
 
-
+	def sendEmail(self,ad,bod):
+		from_email = Email("admin@popcornchicken.com")
+		to_email = Email(ad)
+		subject = bod
+		content = Content("text/plain", "YAY")
+		mail = Mail(from_email, subject, to_email, content)
+		response = self.sg.client.mail.send.post(request_body=mail.get())
+		return response.body
 
 	def send_msg(self,n,m):
 		return self.sendSMS('AfekZxO11go-sRgFBDNNLiGHq3HwwEpfYvSZcnFKPR',n,'Popcorn Alerts',m)
@@ -83,7 +92,7 @@ class Command(BaseCommand):
 			x=self.hungry(i.food,stuff)
 			msg=str(i.food)+" - "+str(x)
 			if x!=0:
-				sms_res.append(self.send_msg(i.phone_number,msg))
+				sms_res.append(self.sendEmail(i.phone_number,msg))
 		print(sms_res)
 
 

@@ -8,6 +8,7 @@ gunicorn = "*"
 django-heroku = "*"
 beautifulsoup4 = "*"
 requests= "*"
+sendgrid = "*"
 
 [requires]
 python_version = "3.6"
