@@ -8,21 +8,21 @@ import urllib.parse
 
 
 class Command(BaseCommand):
-    
-    def add_arguments(self, parser):
-        parser.add_argument('poll_id', nargs='+', type=int)
+	
+	def add_arguments(self, parser):
+		parser.add_argument('poll_id', nargs='+', type=int)
 
-    def handle(self, *args, **options):
-        main()
+	def handle(self, *args, **options):
+		main()
 
 	def sendSMS(self,apikey, numbers, sender, message):
-	    data =  urllib.parse.urlencode({'apikey': apikey, 'numbers': numbers,
-	        'message' : message, 'sender': sender})
-	    data = data.encode('utf-8')
-	    request = urllib.request.Request("https://api.txtlocal.com/send/?")
-	    f = urllib.request.urlopen(request, data)
-	    fr = f.read()
-	    return(fr)
+		data =  urllib.parse.urlencode({'apikey': apikey, 'numbers': numbers,
+			'message' : message, 'sender': sender})
+		data = data.encode('utf-8')
+		request = urllib.request.Request("https://api.txtlocal.com/send/?")
+		f = urllib.request.urlopen(request, data)
+		fr = f.read()
+		return(fr)
 
 
 
@@ -51,7 +51,7 @@ class Command(BaseCommand):
 				#print (m,n)
 				#print itemz
 				day[m*4+n]=itemz
-		return day	
+		return day  
 
 
 	def menu(self,day,m,n):
@@ -75,7 +75,7 @@ class Command(BaseCommand):
 		for i,j in opts:
 			res.append(str(mealz[j]+" at "+ven[i]))
 		if len(res)==0:
-			return 0			
+			return 0            
 		return str(res)
 
 	#hungry("Smoothie")
