@@ -23,13 +23,15 @@ class Command(BaseCommand):
 		return(fr)
 
 	def sendEmail(self,ad,bod):
+		print(ad)
 		from_email = Email("admin@popcornchicken.com")
 		to_email = Email(ad)
 		subject = bod
 		content = Content("text/plain", "YAY")
 		mail = Mail(from_email, subject, to_email, content)
+		print(mail.get())
 		response = self.sg.client.mail.send.post(request_body=mail.get())
-		return response.body
+		return response.status_code
 
 	def send_msg(self,n,m):
 		return self.sendSMS('AfekZxO11go-sRgFBDNNLiGHq3HwwEpfYvSZcnFKPR',n,'Popcorn Alerts',m)
@@ -71,9 +73,9 @@ class Command(BaseCommand):
 				#print mealz[j]
 				x=self.menu(day,i,j)
 				for p in x:
-					if f in p:
+					if f in p and (i,j) not in opts:
 						opts.append((i,j))
-		opts=list(set(opts))
+		#opts=list(set(opts))
 		res=[]
 		for i,j in opts:
 			res.append(str(self.mealz[j]+" at "+self.ven[i]))
