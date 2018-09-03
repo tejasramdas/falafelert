@@ -4,8 +4,8 @@ from .models import Reminder
 from bs4 import BeautifulSoup
 import requests
 
-import urllib.request
-import urllib.parse
+#import urllib.request
+#import urllib.parse
  
 def sendSMS(apikey, numbers, sender, message):
     data =  urllib.parse.urlencode({'apikey': apikey, 'numbers': numbers,
