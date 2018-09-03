@@ -8,7 +8,8 @@ import urllib.parse
 
 
 class Command(BaseCommand):
-	
+	ven=["The Village","Parkside","EVK"]
+	mealz=["Breakfast","Brunch","Lunch","Dinner"]
 
 	def sendSMS(self,apikey, numbers, sender, message):
 		data =  urllib.parse.urlencode({'apikey': apikey, 'numbers': numbers,
@@ -24,8 +25,6 @@ class Command(BaseCommand):
 	def send_msg(self,n,m):
 		return self.sendSMS('AfekZxO11go-sRgFBDNNLiGHq3HwwEpfYvSZcnFKPR',n,'Popcorn Alerts',m)
 
-	ven=["The Village","Parkside","EVK"]
-	mealz=["Breakfast","Brunch","Lunch","Dinner"]
 
 	def fetch_list(self):
 		r  = requests.get("https://hospitality.usc.edu/residential-dining-menus/")
@@ -68,7 +67,7 @@ class Command(BaseCommand):
 		opts=list(set(opts))
 		res=[]
 		for i,j in opts:
-			res.append(str(mealz[j]+" at "+ven[i]))
+			res.append(str(self.mealz[j]+" at "+self.ven[i]))
 		if len(res)==0:
 			return 0            
 		return str(res)
