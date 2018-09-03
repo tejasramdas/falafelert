@@ -9,8 +9,6 @@ import urllib.parse
 
 class Command(BaseCommand):
 	
-	def add_arguments(self, parser):
-		parser.add_argument('poll_id', nargs='+', type=int)
 
 	def handle(self, *args, **options):
 		main()
