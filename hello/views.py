@@ -97,7 +97,7 @@ def index(request):
     if request.method=='POST':
     	rem=Reminder(phone_number=request.POST.get('num'),food=request.POST.get('thing').capitalize())
     	rem.save()
-    	return HttpResponse("Alert created. You will be notified when "+rem.food.lowercase()+" is on the menu starting tomorrow. Nom nom.")
+    	return HttpResponse("Alert created. You will be notified when "+rem.food.lower()+" is on the menu starting tomorrow. Nom nom.")
 
 
 def db(request):
