@@ -1,4 +1,4 @@
-from hello.models import Reminder
+from .models import Reminder
 from bs4 import BeautifulSoup
 import requests
 
@@ -69,6 +69,7 @@ def hungry(f,day):
 	return str(res)
 
 #hungry("Smoothie")
+
 def main():
 	stuff=fetch_list()
 	rem = Reminder.objects.all()
@@ -80,6 +81,3 @@ def main():
 			sms_res.append(send_msg(i.phone_number,msg))
 	print(sms_res)
 
-if __name__ == '__main__':
- 	main() 
- 
