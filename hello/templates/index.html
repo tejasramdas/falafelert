@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Popcorn Chicken</title>
+</head>
+<h3>Save your meal swipes! Get notified when your favorites are on the menu!</h3>
+<body>
+	Add alert
+<form action="#" method="POST">{% csrf_token %}
+  <input type="text" name="num" placeholder="egg@example.com">
+  <input type="text" name="thing" placeholder="popcorn">
+  <input type="submit" name="submit" value="Submit">
+</form>
+Remove email
+<form action="/deletenum" method="POST">{% csrf_token %}
+  <input type="text" name="num" placeholder="potato@example.com">
+  <input type="submit" name="submit" value="Submit">
+</form>
+</body>
+</html>

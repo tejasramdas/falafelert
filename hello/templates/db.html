@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+  <div class="container">
+
+
+<h2>Page View Report</h2>
+
+
+<ul>
+
+{% for greeting in reminders %}
+    <li>{{ greeting.phone_number }}, {{ greeting.food }}</li>
+{% endfor %}
+
+</ul>
+
+</div>
+
+{% endblock %}
