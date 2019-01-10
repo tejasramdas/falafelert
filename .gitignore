@@ -3,3 +3,9 @@ venv
 staticfiles
 .env
 db.sqlite3
+app.json
+db.sqlite3
+Pipfile
+Pipfile.lock
+Procfile
+Procfile.windows
