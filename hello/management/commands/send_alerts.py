@@ -34,7 +34,7 @@ class Command(BaseCommand):
 		return response.status_code
 
 	def send_msg(self,n,m):
-		return self.sendSMS('AfekZxO11go-sRgFBDNNLiGHq3HwwEpfYvSZcnFKPR',n,'Popcorn Alerts',m)
+		return self.sendSMS('',n,'Popcorn Alerts',m)
 
 
 	def fetch_list(self):

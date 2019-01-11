@@ -19,7 +19,7 @@ def sendSMS(apikey, numbers, sender, message):
 
 
 def send_msg(n,m):
-	return sendSMS('AfekZxO11go-sRgFBDNNLiGHq3HwwEpfYvSZcnFKPR',n,'Popcorn Alerts',m)
+	return sendSMS('',n,'Popcorn Alerts',m)
 
 ven=["The Village","Parkside","EVK"]
 mealz=["Breakfast","Brunch","Lunch","Dinner"]
