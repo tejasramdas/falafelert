@@ -7,11 +7,11 @@ from sendgrid.helpers.mail import *
 import urllib.request
 import urllib.parse
 
-
+import os 
 class Command(BaseCommand):
 	ven=["The Village","Parkside","EVK"]
 	mealz=["Breakfast","Brunch","Lunch","Dinner"]
-	sg = sendgrid.SendGridAPIClient(apikey='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')
+	sg = sendgrid.SendGridAPIClient(apikey=os.environ.get('SendGridAPI'))
 
 	def sendSMS(self,apikey, numbers, sender, message):
 		data =  urllib.parse.urlencode({'apikey': apikey, 'numbers': numbers,
