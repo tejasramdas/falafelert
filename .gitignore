@@ -9,3 +9,5 @@ Pipfile
 Pipfile.lock
 Procfile
 Procfile.windows
+urls.py
+urls.pyc
