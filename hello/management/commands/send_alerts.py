@@ -56,6 +56,7 @@ class Command(BaseCommand):
 				#print (m,n)
 				#print itemz
 				day[m*4+n]=itemz
+		print(day)
 		return day  
 
 
