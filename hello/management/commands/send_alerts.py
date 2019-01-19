@@ -73,10 +73,16 @@ class Command(BaseCommand):
 			for j in range(4):
 				#print mealz[j]
 				x=self.menu(day,i,j)
+				if i==0 and j==0:
+					print(x)
 				for p in x:
+					if i==0 and j==0:
+						print(f,p)
 					if f in p and (i,j) not in opts:
+						print("yep")
 						opts.append((i,j))
 		#opts=list(set(opts))
+		print(opts)
 		res=[]
 		for i,j in opts:
 			res.append(str(self.mealz[j]+" at "+self.ven[i]))
