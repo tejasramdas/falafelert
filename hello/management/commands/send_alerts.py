@@ -77,7 +77,7 @@ class Command(BaseCommand):
 				for p in x:
 					if i==0 and j==1:
 						print(f,p)
-					if f in p and (i,j) not in opts:
+					if f.lower() in p.lower() and (i,j) not in opts:
 						print("yep")
 						opts.append((i,j))
 		#opts=list(set(opts))
