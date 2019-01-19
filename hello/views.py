@@ -72,16 +72,6 @@ def hungry(f,day):
 
 #hungry("Smoothie")
 
-def run_search(request):
-	stuff=fetch_list()
-	rem = Reminder.objects.all()
-	sms_res=[]
-	for i in rem:
-		x=hungry(i.food,stuff)
-		msg=str(i.food)+" - "+str(x)
-		if x!=0:
-			sms_res.append(send_msg(i.phone_number,msg))
-	return HttpResponse(sms_res)
 
 
 
@@ -99,11 +89,6 @@ def index(request):
     	return HttpResponse("Alert created. You will be notified when "+rem.food.lower()+" is on the menu starting tomorrow. Nom nom.")
 
 
-def db(request):
-
-    reminders = Reminder.objects.all()
-
-    return render(request, 'db.html', {'reminders': reminders})
 
 def dell(request):
 	if request.method=='POST':
