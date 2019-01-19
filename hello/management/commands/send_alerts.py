@@ -27,7 +27,7 @@ class Command(BaseCommand):
 		from_email = Email("admin@popcornchicken.com")
 		to_email = Email(ad)
 		subject = bod
-		content = Content("text/plain", "YAY")
+		content = Content("text/plain", "!!!")
 		mail = Mail(from_email, subject, to_email, content)
 		print(mail.get())
 		response = self.sg.client.mail.send.post(request_body=mail.get())
@@ -72,16 +72,10 @@ class Command(BaseCommand):
 			for j in range(4):
 				#print mealz[j]
 				x=self.menu(day,i,j)
-				if i==0 and j==1:
-					print(x)
 				for p in x:
-					if i==0 and j==1:
-						print(f,p)
 					if f.lower() in p.lower() and (i,j) not in opts:
-						print("yep")
 						opts.append((i,j))
 		#opts=list(set(opts))
-		print(opts)
 		res=[]
 		for i,j in opts:
 			res.append(str(self.mealz[j]+" at "+self.ven[i]))
