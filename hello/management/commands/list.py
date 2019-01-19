@@ -7,5 +7,5 @@ import urllib.parse
 
 class Command(BaseCommand):
 	def handle(self, *args, **options):
-		rem = Reminder.objects.all()
+		rem = Reminder.objects.all().values()
 		print(rem)
