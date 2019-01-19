@@ -92,10 +92,11 @@ class Command(BaseCommand):
 		rem = Reminder.objects.all()
 		sms_res=[]
 		for i in rem:
+			print(i.food)
 			x=self.hungry(i.food,stuff)
 			msg=str(i.food)+" - "+str(x)
 			if x!=0:
 				sms_res.append(self.sendEmail(i.phone_number,msg))
-		print(sms_res)
+	
 
 
