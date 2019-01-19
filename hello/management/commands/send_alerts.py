@@ -56,7 +56,6 @@ class Command(BaseCommand):
 				#print (m,n)
 				#print itemz
 				day[m*4+n]=itemz
-		print(day)
 		return day  
 
 
@@ -73,10 +72,10 @@ class Command(BaseCommand):
 			for j in range(4):
 				#print mealz[j]
 				x=self.menu(day,i,j)
-				if i==0 and j==0:
+				if i==0 and j==1:
 					print(x)
 				for p in x:
-					if i==0 and j==0:
+					if i==0 and j==1:
 						print(f,p)
 					if f in p and (i,j) not in opts:
 						print("yep")
@@ -98,7 +97,6 @@ class Command(BaseCommand):
 		rem = Reminder.objects.all()
 		sms_res=[]
 		for i in rem:
-
 			x=self.hungry(i.food,stuff)
 			print(i.food,x)
 			msg=str(i.food)+" - "+str(x)
